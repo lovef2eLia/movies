@@ -13,12 +13,11 @@ app.get('/movies', (req, res) => {
   res.render('index', {movies, BASE_IMG_URL});
 });
 
-app.get('/movies/:id', (req, res) => {
+app.get('/movie/:id', (req, res) => {
   const id = req.params.id;
-  res.send(`read movie: ${id}`);
+  const movie = movies.find(mv => mv.id.toString() === id);
+  res.render('detail', {movie, BASE_IMG_URL});
 });
-
-
 
 app.engine('.hbs', engine({extname: '.hbs'}));
 app.set('view engine', '.hbs');
